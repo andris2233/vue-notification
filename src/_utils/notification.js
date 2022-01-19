@@ -34,7 +34,7 @@ export const createNotification = (type, { title, description }) => {
     throw new Error('Notification error: incorrect notification description');
   }
 
-  if (!['string', 'undefined'].includes(typeof title) || title !== null) {
+  if (!['string', 'undefined'].includes(typeof title) && title !== null) {
     throw new Error('Notification error: incorrect notification title type');
   }
 

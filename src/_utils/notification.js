@@ -38,7 +38,7 @@ export const createNotification = (type, { title, description }) => {
     throw new Error('Notification error: incorrect notification title type');
   }
 
-  return Object.freeze({
+  return {
     type,
     title: title ? title.trim() : '',
     description: description.trim(),
@@ -56,5 +56,28 @@ export const createNotification = (type, { title, description }) => {
 
       this.timeout = timeout;
     },
-  });
+  };
+};
+
+/**
+ * function that returns a computed notification title
+ * @param {Notification} notification
+ * @returns {string}
+ */
+export const getNotificationTitle = (notification) => {
+  if (notification.title) return notification.title;
+
+  if (notification.type === NOTIFICATIONS_TYPES.TEXT) {
+    return 'Уведомление!';
+  }
+
+  if (notification.type === NOTIFICATIONS_TYPES.ERROR) {
+    return 'Ошибка!';
+  }
+
+  if (notification.type === NOTIFICATIONS_TYPES.SUCCESS) {
+    return 'Успех!';
+  }
+
+  return 'Предупреждение!';
 };

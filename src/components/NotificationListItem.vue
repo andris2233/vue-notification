@@ -3,7 +3,7 @@
     <header class="notification__header">
       <h3 class="notification__header-title"> {{ notificationTitle }} </h3>
 
-      <button class="notification__header-clear" />
+      <button class="notification__header-clear" @click="onClear"/>
     </header>
 
     <div class="notification__content"> {{ notification.description }} </div>
@@ -25,6 +25,12 @@ export default {
       return getNotificationTitle(this.notification);
     },
   },
+
+  methods: {
+    onClear() {
+      this.$emit('clear');
+    },
+  },
 };
 </script>
 
@@ -41,10 +47,14 @@ export default {
   box-shadow: 0 0 10px rgb(196, 196, 196);
 
   background-color: rgba(235, 235, 235, 0.6);
-  transition: background-color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease,
+    opacity 0.2s ease,
+  ;
 
-  color: rgb(3, 83, 129);
-  max-width: 350px;
+  color: rgb(78, 78, 78);
+  width: 350px;
 
   &:hover {
     background-color: rgba(235, 235, 235, 0.8);
